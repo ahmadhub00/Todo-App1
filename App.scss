@@ -1,0 +1,126 @@
+@import"/src/sass/bootstrap";
+
+.auth,
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 48px;
+
+    .card {
+        max-width: 450px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border: 0;
+        margin: 0 auto;
+    }
+}
+
+.dashboard {
+    .card {
+        max-width: none !important;
+    }
+}
+
+.square-card {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* 1:1 aspect ratio */
+}
+
+.square-card .card-body {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
+.square-card .card-body::-webkit-scrollbar {
+    width: 0;
+    /* Width of the scrollbar */
+}
+
+.square-card .card-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0);
+    /* Color of the scrollbar thumb */
+    // border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+.square-card .card-body::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Color of the scrollbar track */
+}
+
+.ant-layout-sider {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.ant-layout-sider::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ant-layout-sider::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+.ant-layout-content {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.ant-layout-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ant-layout-content::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+.loader {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.loader:after{
+  content: '';
+  position: absolute;
+  inset: 8px;
+  margin: auto;
+  background: #222b32;
+   border-radius: 50%;
+}
+.loader:before{
+  content: '';
+  position: absolute;
+  inset: 0px;
+  margin: auto;
+  background: #de3500;
+  animation: crlMugLoader 2s linear infinite alternate;
+}
+
+.loader-container {
+  height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+}
+
+.loader {
+  position: relative;
+  width: 100px;
+    height: 100px;
+  }
+
+  @keyframes crlMugLoader {
+    0%  ,10% { transform: translateY(64px) }
+    90% , 100% { transform: translateY(0px) }
+  }
+       
