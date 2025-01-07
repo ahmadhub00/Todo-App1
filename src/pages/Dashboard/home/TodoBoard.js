@@ -382,3 +382,19 @@ export default function TodoBoard() {
                         style={{ width: 1000, maxWidth: 1000 }}
                     >
                 
+                <Title level={2} className='m-0 text-center'>Add Todo</Title>
+                <Divider />
+                <Form layout="vertical">
+                    <Row gutter={16}>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="Title">
+                                <Input placeholder='Input your title' name='title'
+                                    onChange={handleChange}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="Background Color">
+                                <ColorPicker name='backgroundColor' onChange={handleColorChange} showText={(color) => <span>Background Color ({color.toHexString()})</span>} />
+                            </Form.Item>
+                        </Col>
