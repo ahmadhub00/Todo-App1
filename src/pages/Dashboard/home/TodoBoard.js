@@ -398,3 +398,86 @@ export default function TodoBoard() {
                                 <ColorPicker name='backgroundColor' onChange={handleColorChange} showText={(color) => <span>Background Color ({color.toHexString()})</span>} />
                             </Form.Item>
                         </Col>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="Date">
+                                <DatePicker className='w-100'
+                                    onChange={handleDate}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="List">
+                                <Select
+                                    defaultValue="Personal"
+                                    name='list'
+                                    onChange={(value) => { setState({ ...state, list: value }) }}
+                                    options={listArray.map((list) => ({
+                                        value: list.label,
+                                        label: list.label,
+                                    }))}
+                                />
+                            </Form.Item>
+                        </Col><Col span={24}>
+                            <Form.Item label="Description">
+                                <Input.TextArea placeholder='Input your description' name='description'
+                                    onChange={handleChange}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} md={{ span: 12, offset: 6 }} lg={{ span: 8, offset: 8 }} >
+                            <Button type='primary' htmlType='submit' className='w-100' loading={isProcessing}
+                                onClick={handleSubmit}
+                            >Add Todo</Button>
+                        </C ol>
+                    </Row>
+                </Form>
+            </Modal>
+            <Modal
+                title="Update Todo"
+                centered
+                open={isModalOpenForUpdate}
+                onOk={handleUpdate}
+                okText="Confirm"
+                cancelText="Close"
+                onCancel={() => setIsModalOpenForUpdate(false)}
+                style={{ width: 1000, maxWidth: 1000 }}
+            >
+                <Title level={2} className='m-0 text-center'>Update Todo</Title>
+                <Divider />
+                <Form layout="vertical">
+                    <Row gutter={16}>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="Title">
+                                <Input placeholder='Input your title' name='title' value={state.title}
+                                    onChange={handleChange}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="Background Color">
+                                <ColorPicker name='backgroundColor' value={state.backgroundColor} onChange={handleColorChange} showText={(color) => <span>Background Color ({color.toHexString()})</span>} />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="Date">
+                                <DatePicker className='w-100' value={state.date ? dayjs(state.date) : ""}
+                                    onChange={handleDate}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} lg={12}>
+                            <Form.Item label="List">
+                                <Select
+                                    defaultValue="Personal"
+                                    name="list"
+                                    value={state.list}
+                                    onChange={(value) => {
+                                        setState({ ...state, list: value });
+                                    }}
+                                    options={listArray.map((list) => ({
+                                        value: list.label,
+                                        label: list.label,
+                                    }))}
+                                />
+                            </Form.Item>
+                        </Col>
