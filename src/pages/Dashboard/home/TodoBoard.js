@@ -90,7 +90,8 @@ export default function TodoBoard() {
         else {
             return 'dark';
         }
-    }useEffect(() => {
+    }
+    useEffect(() => {
         getTodos()
         getLists()
         window.innerWidth < 600 ? setCollapsed(true) : setCollapsed(false)
@@ -104,7 +105,8 @@ export default function TodoBoard() {
             .catch(err => {
                 message.error("Signout not successful")
             })
-    }const handleUpdate = async () => {
+    }
+    const handleUpdate = async () => {
         setIsProcessing(true)
         const { title, backgroundColor, date, description, list, todoID } = state
         if (!title || !backgroundColor || !date || !description || !list) {
@@ -153,13 +155,13 @@ export default function TodoBoard() {
                                     borderRadius: '15px',
                                     backgroundColor: "#F4F4F4",
                                 }}
-                            ></Sider>
-                             <div className="demo-logo-vertical" />
+                            >
+                                <div className="demo-logo-vertical" />
                                 <div className="d-flex">
                                     {collapsed ? "" : <h4 className='fw-bold pt-3 px-3 mt-1'>Menu</h4>}
                                     <Button
                                         type="text"
-                                         icon={collapsed ? <MenuUnfoldOutlined style={{ color: "black" }} /> : <MenuFoldOutlined style={{ color: "black" }} />}
+                                        icon={collapsed ? <MenuUnfoldOutlined style={{ color: "black" }} /> : <MenuFoldOutlined style={{ color: "black" }} />}
                                         onClick={() => setCollapsed(!collapsed)}
                                         className='px-0 w-100 mx-0 text-light'
                                         style={{ height: 70, color: "black" }}
@@ -258,7 +260,7 @@ export default function TodoBoard() {
                                             </Form.Item>
                                         </Form>
                                     )}
-  <Menu.Item key="15" icon={<PlusOutlined />} onClick={() => setListInput(!listInput)}>
+                                    <Menu.Item key="15" icon={<PlusOutlined />} onClick={() => setListInput(!listInput)}>
                                         Add New List
                                     </Menu.Item>
                                     <Menu.Item key="14" icon={<LogoutOutlined />} onClick={handleLogout}>
@@ -290,7 +292,7 @@ export default function TodoBoard() {
                                                     top: 18,
                                                 }}
                                             >
-                                       <div className='container-xxl mt-5' >
+                                                <div className='container-xxl mt-5' >
                                                     <div className="row">
                                                         <div className="col ms-3 d-flex justify-content-between">
                                                             <h1 className='fw-bold'>Sticky Wall</h1>
@@ -320,7 +322,6 @@ export default function TodoBoard() {
                                                                                                                 setState(todo)
                                                                                                             }} >Update Todo</Button>
                                                                                                         </Menu.Item>
-                                                                                                        
                                                                                                         <Menu.Item key="2">
                                                                                                             <Button danger icon={<DeleteOutlined />} onClick={async () => {
                                                                                                                 let deletedTodo = { ...todo, status: 'deleted' };
@@ -351,37 +352,39 @@ export default function TodoBoard() {
                                                                                 </div>
                                                                             </div>
                                                                         )
-                                                                        <div className="col">
-                                                                            <div className="card " style={{ width: '100%', height: '100%', backgroundColor: "#F4F4F4" }}>
-                                                                                <div className="card-body d-flex justify-content-center align-items-center" onClick={openModalForAddTodo}>
-                                                                                    <PlusOutlined style={{ fontSize: '70px' }} />
-                                                                                </div>
-                                                                            </div>
+                                                                    }
+                                                                )
+                                                                }
+                                                                <div className="col">
+                                                                    <div className="card " style={{ width: '100%', height: '100%', backgroundColor: "#F4F4F4" }}>
+                                                                        <div className="card-body d-flex justify-content-center align-items-center" onClick={openModalForAddTodo}>
+                                                                            <PlusOutlined style={{ fontSize: '70px' }} />
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </Content>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </Content>
                                         </div>
-                                    </Layout>
-                                </Layout>
-                            </div >
-                        </div >
+                                    </div>
+                                </div>
+                            </Layout>
+                        </Layout>
                     </div >
-                    <Modal
-                        title="Add Todo"
-                        centered
-                        open={isModalOpen}
-                        onOk={handleSubmit}
-                        okText="Confirm"
-                        cancelText="Close"
-                        onCancel={() => setIsModalOpen(false)}
-                        style={{ width: 1000, maxWidth: 1000 }}
-                    >
-                
+                </div >
+            </div >
+            <Modal
+                title="Add Todo"
+                centered
+                open={isModalOpen}
+                onOk={handleSubmit}
+                okText="Confirm"
+                cancelText="Close"
+                onCancel={() => setIsModalOpen(false)}
+                style={{ width: 1000, maxWidth: 1000 }}
+            >
                 <Title level={2} className='m-0 text-center'>Add Todo</Title>
                 <Divider />
                 <Form layout="vertical">
@@ -417,7 +420,8 @@ export default function TodoBoard() {
                                     }))}
                                 />
                             </Form.Item>
-                        </Col><Col span={24}>
+                        </Col>
+                        <Col span={24}>
                             <Form.Item label="Description">
                                 <Input.TextArea placeholder='Input your description' name='description'
                                     onChange={handleChange}
@@ -428,7 +432,7 @@ export default function TodoBoard() {
                             <Button type='primary' htmlType='submit' className='w-100' loading={isProcessing}
                                 onClick={handleSubmit}
                             >Add Todo</Button>
-                        </C ol>
+                        </Col>
                     </Row>
                 </Form>
             </Modal>
@@ -481,3 +485,21 @@ export default function TodoBoard() {
                                 />
                             </Form.Item>
                         </Col>
+                        <Col span={24}>
+                            <Form.Item label="Description">
+                                <Input.TextArea placeholder='Input your description' name='description' value={state.description}
+                                    onChange={handleChange}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col xs={24} md={{ span: 12, offset: 6 }} lg={{ span: 8, offset: 8 }} >
+                            <Button type='primary' htmlType='submit' className='w-100' loading={isProcessing}
+                                onClick={handleUpdate}
+                            >Update Todo</Button>
+                        </Col>
+                    </Row>
+                </Form>
+            </Modal>
+        </>
+    );
+};
